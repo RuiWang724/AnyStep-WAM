@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2457db">
+  <meta name="description" content="AnyStep-WAM: budget-aligned distillation and adaptive inference for world action models. Explore the method, results, and real-time robot demonstrations.">
+  <meta property="og:title" content="AnyStep-WAM | Adaptive Inference for World Action Models">
+  <meta property="og:description" content="Learn across denoising budgets. Allocate computation to the current scene. Explore AnyStep-WAM and six real-world robot tasks.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ruiwang724.github.io/AnyStep-WAM/">
+  <meta property="og:image" content="https://ruiwang724.github.io/AnyStep-WAM/assets/real-world.png">
+  <link rel="canonical" href="https://ruiwang724.github.io/AnyStep-WAM/">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/style.css?v=labs-20260930">
+  <title>AnyStep-WAM | Budget-Aligned Distillation &amp; Adaptive Inference</title>
+  <script src="assets/main.js?v=nolabel-20260930" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="wordmark wordmark--labs" href="#" aria-label="CVMI &amp; IAL · AnyStep-WAM home"><span class="lab-names">CVMI &amp; IAL</span><span class="brand-divider" aria-hidden="true">·</span><span class="brand-project">AnyStep<span>-WAM</span></span></a>
+      <div class="nav-links"><a href="#method">Method</a><a href="#demos">Demos</a><a href="#results">Results</a><a href="#citation">Citation</a></div>
+      <a class="nav-paper" href="https://arxiv.org/abs/2609.33748" target="_blank" rel="noopener">Paper <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero container" aria-labelledby="paper-title">
+      <div class="eyebrow"><span></span> World action models · Adaptive inference</div>
+      <h1 id="paper-title">AnyStep<span>-WAM</span></h1>
+      <p class="paper-title">Budget-Aligned Distillation and Adaptive Inference<br class="desktop-break"> for World Action Models</p>
+      <div class="authors">
+        <span>Rui Wang<sup>1,3,*</sup></span><span>Xiangyu Wang<sup>1,*</sup></span><span>Donglin Yang<sup>2</sup></span><span>Yibo Li<sup>1</sup></span><span>Canyang Chen<sup>1</sup></span><span>Zhongrui Wang<sup>1,†</sup></span><span>Xiaojuan Qi<sup>2,3,†</sup></span>
+      </div>
+      <div class="affiliations"><span><sup>1</sup> Southern University of Science and Technology</span><span><sup>2</sup> The University of Hong Kong</span><span><sup>3</sup> Shenzhen Loop Area Institute</span></div>
+      <p class="author-note">* Equal contribution &nbsp; · &nbsp; † Corresponding authors</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="https://arxiv.org/pdf/2609.33748" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg>Read the paper</a>
+        <a class="button" href="https://github.com/RuiWang724/AnyStep-WAM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg>Project repository</a>
+        <a class="button button-text" href="#demos"><span aria-hidden="true">▷</span> Watch robot demos</a>
+      </div>
+    </section>
+
+    <section id="comparison" class="showcase showcase--comparison container" aria-label="Base-Motus and AnyStep-Motus comparison">
+      <div class="showcase-copy">
+        <div class="showcase-heading">
+          <p class="eyebrow">See the difference · Real-world comparison</p>
+          <h2>Fewer steps.<br><span>More responsive robot actions.</span></h2>
+        </div>
+        <div class="showcase-summary">
+          <p>Base-Motus and AnyStep-Motus perform the same task side by side. AnyStep adapts its denoising budget to the current scene.</p>
+          <a class="inline-link" href="#method">See how AnyStep works <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="showcase-media">
+        <video id="hero-video" width="1920" height="720" controls autoplay muted loop playsinline preload="metadata" poster="assets/base-motus-anystep-motus-comparison.jpg" aria-label="Side-by-side Put Block comparison on a Unitree G1D: Base-Motus on the left and AnyStep-Motus on the right"><source src="assets/base-motus-anystep-motus-comparison.mp4" type="video/mp4"></video>
+        <div class="video-caption"><span>Put Block <span class="muted">/ Unitree G1D</span></span><span class="comparison-key">Base-Motus <span aria-hidden="true">→</span> AnyStep-Motus</span><span class="speed-badge">1× speed</span></div>
+      </div>
+    </section>
+    <div class="metrics container" aria-label="Research highlights">
+      <div><strong>1–10</strong><span>Selectable denoising steps</span></div>
+      <div><strong>3 <small>backbones</small></strong><span>Motus · FastWAM · LingBotVA</span></div>
+      <div><strong>50 + 6</strong><span>Simulation + real-world tasks</span></div>
+      <div><strong>6.14<small>×</small></strong><span>Peak reported real-world inference speedup</span></div>
+    </div>
+
+    <section id="overview" class="section container">
+      <div class="section-heading"><p class="eyebrow">Overview</p><h2>Adaptive computation for world action models.</h2></div>
+      <p class="lead">World-action models (WAMs) couple predictive visual modeling with action generation, typically relying on iterative denoising with a fixed number of denoising steps. However, manipulation tasks contain action chunks with varying sensitivity to generation errors: critical actions require precision, while less sensitive actions allow faster generation with fewer denoising steps. We introduce <strong>AnyStep World Action Model</strong>, a general framework for <strong>tunable-budget prediction</strong> and <strong>scene-dependent computation allocation</strong>.</p>
+      <p class="lead" style="margin-top:1em">Our budget-aligned teacher-trajectory distillation trains interval-conditioned flow maps using explicit frozen-teacher transitions and shared low-rank adapters, supporting action generation from one-step prediction to multi-step refinement. Building on this capability, a lightweight risk-benefit scheduler predicts teacher-curvature-based difficulty and budget-specific student–teacher fidelity from a single one-step preview, selecting the smallest budget predicted to satisfy risk-adaptive fidelity requirements.</p>
+      <figure class="paper-figure">
+        <button class="figure-button" type="button" data-figure="assets/overview.png" data-caption="AnyStep-WAM overview" aria-label="Enlarge AnyStep-WAM overview"><span class="figure-crop"><img src="assets/overview.png" width="1404" height="992" loading="lazy" alt="Fixed budgets can waste computation or under-refine demanding states. Teacher-anchored distillation supports multiple budgets, and risk-benefit scheduling selects steps for each scene."></span><span class="zoom-hint" aria-hidden="true">↗ Enlarge figure</span></button>
+        <figcaption>Learn effective generation across budgets, then adapt the budget to each action chunk. The reductions illustrated here refer to Motus.</figcaption>
+      </figure>
+    </section>
+
+    <section id="method" class="section section-tint">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Method</p><h2>Learn across budgets.<br>Choose the steps at inference.</h2></div>
+        <div class="method-grid">
+          <article><span class="step-number">01 / DISTILL</span><h3>Budget-aligned learning</h3><p>Frozen-teacher trajectories provide explicit targets for finite-time transitions. Shared LoRA adapters train interval-conditioned flow maps for one-step prediction through multi-step refinement.</p></article>
+          <article><span class="step-number">02 / SELECT</span><h3>Risk–benefit scheduling</h3><p>A single preview predicts teacher-curvature-based difficulty and student–teacher fidelity for each candidate budget. The scheduler selects the smallest budget that meets the risk-adaptive fidelity requirements.</p></article>
+          <article><span class="step-number">03 / RECYCLE</span><h3>Reuse the preview</h3><p>For a one-step budget, return the preview. For larger budgets, recycle its update into the first scheduled state and perform the remaining <em>K</em> − 1 updates. Scheduling needs no online teacher or candidate rollouts.</p></article>
+        </div>
+        <figure class="paper-figure method-figure">
+          <button class="figure-button" type="button" data-figure="assets/method.png" data-caption="Budget-aligned training and online execution" aria-label="Enlarge the method diagram"><span class="figure-crop"><img src="assets/method.png" width="1404" height="992" loading="lazy" alt="Method diagram: interval-aware prediction, frozen-teacher distillation with LoRA across budgets, and online preview, risk-benefit selection, recycling, and denoising."></span><span class="zoom-hint" aria-hidden="true">↗ Enlarge figure</span></button>
+          <figcaption>The selected budget applies to each active denoising branch. Motus jointly predicts video and action; FastWAM uses the action branch at inference; LingBotVA follows sequential video-to-action generation.</figcaption>
+        </figure>
+        <details class="method-detail"><summary>What does the scheduler predict?</summary><p>Risk measures teacher-trajectory difficulty, rather than a calibrated probability of task failure. Benefit estimates budget-specific student–teacher fidelity. Feasibility requires the fidelity threshold to be met for every active modality; if no candidate is feasible, the scheduler falls back to the budget with the largest sum of predicted modality fidelities. See the paper for the complete supervision and selection rules.</p></details>
+      </div>
+    </section>
+
+    <section id="demos" class="section container">
+      <div class="section-heading heading-split"><div><p class="eyebrow">Real-world demonstrations</p><h2>Three backbones. Six tasks.</h2></div><p>Unitree G1D dual-arm robot.<br>All recordings play at their original <strong>1× speed</strong>.</p></div>
+      <div class="demo-toolbar"><div class="tabs" role="tablist" aria-label="Select a demonstration model"><button type="button" id="tab-fastwam" role="tab" aria-selected="true" aria-controls="demo-panel" data-model="fastwam">AnyStep-FastWAM</button><button type="button" id="tab-lingbotva" role="tab" aria-selected="false" tabindex="-1" aria-controls="demo-panel" data-model="lingbotva">AnyStep-LingBotVA</button><button type="button" id="tab-motus" role="tab" aria-selected="false" tabindex="-1" aria-controls="demo-panel" data-model="motus">AnyStep-Motus</button></div><span class="demo-count">6 task recordings</span></div>
+      <div id="demo-panel" class="demo-grid" role="tabpanel" aria-labelledby="tab-fastwam">
+        <article class="demo-card"><video controls playsinline preload="none" poster="assets/fastwam-bowl_pouring.jpg?v=nolabel-20260930" aria-label="Bowl Pouring demonstration" data-task="bowl_pouring"><source src="assets/fastwam-bowl_pouring.mp4?v=nolabel-20260930" type="video/mp4"></video><div><h3>Bowl Pouring</h3><span>01 / 06</span></div></article>
+        <article class="demo-card"><video controls playsinline preload="none" poster="assets/fastwam-clean_table.jpg?v=nolabel-20260930" aria-label="Clean Table demonstration" data-task="clean_table"><source src="assets/fastwam-clean_table.mp4?v=nolabel-20260930" type="video/mp4"></video><div><h3>Clean Table</h3><span>02 / 06</span></div></article>
+        <article class="demo-card"><video controls playsinline preload="none" poster="assets/fastwam-put_block.jpg?v=nolabel-20260930" aria-label="Put Block demonstration" data-task="put_block"><source src="assets/fastwam-put_block.mp4?v=nolabel-20260930" type="video/mp4"></video><div><h3>Put Block</h3><span>03 / 06</span></div></article>
+        <article class="demo-card"><video controls playsinline preload="none" poster="assets/fastwam-put_cup.jpg?v=nolabel-20260930" aria-label="Put Cup demonstration" data-task="put_cup"><source src="assets/fastwam-put_cup.mp4?v=nolabel-20260930" type="video/mp4"></video><div><h3>Put Cup</h3><span>04 / 06</span></div></article>
+        <article class="demo-card"><video controls playsinline preload="none" poster="assets/fastwam-stack_blocks.jpg?v=nolabel-20260930" aria-label="Stack Blocks demonstration" data-task="stack_blocks"><source src="assets/fastwam-stack_blocks.mp4?v=nolabel-20260930" type="video/mp4"></video><div><h3>Stack Blocks</h3><span>05 / 06</span></div></article>
+        <article class="demo-card"><video controls playsinline preload="none" poster="assets/fastwam-stack_bowls.jpg?v=nolabel-20260930" aria-label="Stack Bowls demonstration" data-task="stack_bowls"><source src="assets/fastwam-stack_bowls.mp4?v=nolabel-20260930" type="video/mp4"></video><div><h3>Stack Bowls</h3><span>06 / 06</span></div></article>
+      </div>
+      <p id="demo-status" class="sr-only" aria-live="polite">Showing six AnyStep-FastWAM demonstrations.</p>
+    </section>
+
+    <section id="results" class="section section-tint">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Experiments</p><h2>Less denoising.<br>Comparable manipulation success.</h2></div>
+        <p class="lead">Evaluated on 50 RoboTwin 2.0 tasks and six real-world tasks. Adaptive inference preserves comparable or higher average success rates while reducing the number of denoising steps and inference latency.</p>
+        <div class="result-heading"><h3>RoboTwin 2.0</h3><span>Clean + randomized settings · Average results</span></div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="RoboTwin results, scroll horizontally on small screens"><table class="results-table"><caption class="sr-only">RoboTwin 2.0 average success rates, steps, and latency, from Table 1 and Section 5.1 of the paper</caption><thead><tr><th scope="col">Backbone</th><th scope="col">Success rate ↑<small>Base → AnyStep</small></th><th scope="col">Denoising steps ↓<small>Base → AnyStep</small></th><th scope="col">Step reduction ↓</th><th scope="col">Latency ↓<small>Base → AnyStep</small></th></tr></thead><tbody>
+          <tr><th scope="row">Motus</th><td>87.84 <span>→</span> <strong>87.96%</strong></td><td>10 <span>→</span> <strong>3.98</strong></td><td class="positive">60.2%</td><td>1.932 <span>→</span> <strong>0.859 s</strong></td></tr>
+          <tr><th scope="row">FastWAM</th><td>91.83 <span>→</span> <strong>91.59%</strong></td><td>10 <span>→</span> <strong>5.03</strong></td><td class="positive">49.8%<sup>‡</sup></td><td>0.496 <span>→</span> <strong>0.295 s</strong></td></tr>
+          <tr><th scope="row">LingBotVA</th><td>92.24 <span>→</span> <strong>92.22%</strong></td><td>25 / 50 <span>→</span> <strong>3.68 / 3.68</strong></td><td class="positive">85.28% / 92.64%</td><td>9.732 <span>→</span> <strong>3.247 s</strong></td></tr>
+        </tbody></table></div>
+        <p class="data-note">Latency: seconds per inference call on one NVIDIA A100. LingBotVA values separated by “/” denote video / action. ‡ FastWAM's reduction is reported as 49.8% in the paper; its displayed mean steps are rounded to 5.03.</p>
+
+        <div class="one-step-block"><div><p class="eyebrow">Cross-budget capability</p><h3>Stronger one-step prediction.</h3><p>AnyStep training improves average one-step success rates on RoboTwin 2.0 across all three backbones.</p><div class="chart-legend"><span><i class="legend-base"></i>Base, 1 step</span><span><i class="legend-ours"></i>AnyStep, 1 step</span></div></div><div class="bar-chart" aria-label="One-step success rates">
+          <div class="bar-group"><div class="bar-title"><strong>Motus</strong><span>+7.07 pp</span></div><div class="bar-row"><div class="bar base" style="--value:75.05%"></div><span>75.05%</span></div><div class="bar-row"><div class="bar ours" style="--value:82.12%"></div><span>82.12%</span></div></div>
+          <div class="bar-group"><div class="bar-title"><strong>FastWAM</strong><span>+12.08 pp</span></div><div class="bar-row"><div class="bar base" style="--value:77.20%"></div><span>77.20%</span></div><div class="bar-row"><div class="bar ours" style="--value:89.28%"></div><span>89.28%</span></div></div>
+          <div class="bar-group"><div class="bar-title"><strong>LingBotVA</strong><span>+8.94 pp</span></div><div class="bar-row"><div class="bar base" style="--value:73.77%"></div><span>73.77%</span></div><div class="bar-row"><div class="bar ours" style="--value:82.71%"></div><span>82.71%</span></div></div>
+          <p class="chart-axis">Success rate (%) · Bars share a 0–100% scale · pp = percentage points</p>
+        </div></div>
+
+        <div class="result-heading"><h3>Real-world manipulation</h3><span>Six tasks · Unitree G1D</span></div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Real-world results, scroll horizontally on small screens"><table class="results-table"><caption class="sr-only">Real-world average results, from Table 2 and Section 5.2 of the paper</caption><thead><tr><th scope="col">Backbone</th><th scope="col">Success rate ↑<small>Base → AnyStep</small></th><th scope="col">Denoising steps ↓<small>Base → AnyStep</small></th><th scope="col">Latency ↓<small>Base → AnyStep</small></th><th scope="col">Speedup ↑</th></tr></thead><tbody>
+          <tr><th scope="row">Motus</th><td>65.83 <span>→</span> <strong>69.17%</strong></td><td>10 <span>→</span> <strong>4.06</strong></td><td>1.868 <span>→</span> <strong>1.117 s</strong></td><td class="positive">1.67×</td></tr>
+          <tr><th scope="row">FastWAM</th><td>70.00 <span>→</span> <strong>71.67%</strong></td><td>10 <span>→</span> <strong>3.61</strong></td><td>0.280 <span>→</span> <strong>0.122 s</strong></td><td class="positive">2.30×</td></tr>
+          <tr><th scope="row">LingBotVA</th><td>68.33 <span>→</span> <strong>70.00%</strong></td><td>25 / 50 <span>→</span> <strong>3.54 / 3.54</strong></td><td>4.654 <span>→</span> <strong>0.758 s</strong></td><td class="positive">6.14×</td></tr>
+        </tbody></table></div>
+        <p class="data-note">Latency: seconds per inference call on one NVIDIA RTX 5090. Each base model and its AnyStep variant use 50 demonstrations per task, 8,000 optimization steps, four NVIDIA H100 GPUs, and a global batch size of 32. All results above are reported in <a href="https://arxiv.org/html/2609.33748v1" target="_blank" rel="noopener">arXiv v1</a>.</p>
+      </div>
+    </section>
+
+    <section id="citation" class="section container citation-section">
+      <div class="section-heading heading-split"><div><p class="eyebrow">Citation</p><h2>BibTeX</h2></div><button class="button copy-button" id="copy-citation" type="button">Copy citation <span aria-hidden="true">⧉</span></button></div>
+      <pre><code id="bibtex">@article{wang2026anystepwam,
+  title   = {AnyStep-WAM: Budget-Aligned Distillation and Adaptive
+             Inference for World Action Models},
+  author  = {Wang, Rui and Wang, Xiangyu and Yang, Donglin and Li, Yibo
+             and Chen, Canyang and Wang, Zhongrui and Qi, Xiaojuan},
+  journal = {arXiv preprint arXiv:2609.33748},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2609.33748}
+}</code></pre>
+      <p id="copy-status" class="copy-status" aria-live="polite"></p>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container"><a class="wordmark" href="#">AnyStep<span>-WAM</span></a><p>Budget-aligned learning. Adaptive inference.</p><a href="https://arxiv.org/abs/2609.33748" target="_blank" rel="noopener">arXiv:2609.33748 ↗</a></div></footer>
+  <dialog id="figure-dialog" aria-labelledby="figure-dialog-title"><div class="dialog-toolbar"><h2 id="figure-dialog-title">Figure</h2><button id="close-figure" type="button" aria-label="Close enlarged figure">Close ×</button></div><div class="dialog-image-wrap"><img id="dialog-image" alt=""></div></dialog>
+</body>
+</html>
