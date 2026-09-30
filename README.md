@@ -2,7 +2,7 @@
 
 ### Budget-Aligned Distillation and Adaptive Inference for World Action Models
 
-**CVMI & IAL** · [Paper](https://arxiv.org/abs/2609.33748) · [Real-world videos](#real-world-demonstrations)
+**CVMI & IAL** · [Paper](https://arxiv.org/abs/2609.33748) · [Project website](https://ruiwang724.github.io/AnyStep-WAM/) · [Real-world videos](#real-world-demonstrations)
 
 > **Code and model weights: coming soon.**
 >
