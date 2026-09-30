@@ -20,13 +20,13 @@ We evaluate AnyStep on **Motus, FastWAM, and LingBotVA**, across **50 RoboTwin 2
 
 ## Real-world demonstrations
 
-Experiments use a **Unitree G1D dual-arm robot**. All videos are shown at their original **1× speed**. Click the comparison thumbnail or a task link to open its video on GitHub.
+Experiments use a **Unitree G1D dual-arm robot**. All videos are shown at their original **1× speed**. Play the comparison below, or download individual task recordings using the links in the table.
 
 ### Base-Motus vs. AnyStep-Motus
 
-[![Watch the side-by-side Put Block comparison: Base-Motus on the left and AnyStep-Motus on the right.](media/base-motus-anystep-motus-comparison.jpg)](media/base-motus-anystep-motus-comparison.mp4)
+https://github.com/user-attachments/assets/5b2e18a4-378e-48b0-be6d-b30de362c728
 
-[Watch the side-by-side comparison](media/base-motus-anystep-motus-comparison.mp4) · Put Block · 1× speed
+[Download the side-by-side comparison](media/base-motus-anystep-motus-comparison.mp4?raw=true) · Put Block · 1× speed
 
 ### Six tasks across three backbones
 
@@ -34,12 +34,12 @@ The following recordings use AnyStep adaptive inference.
 
 | Task | AnyStep-FastWAM | AnyStep-LingBotVA | AnyStep-Motus |
 | --- | --- | --- | --- |
-| Bowl Pouring | [Video](media/fastwam-bowl_pouring.mp4) | [Video](media/lingbotva-bowl_pouring.mp4) | [Video](media/motus-bowl_pouring.mp4) |
-| Clean Table | [Video](media/fastwam-clean_table.mp4) | [Video](media/lingbotva-clean_table.mp4) | [Video](media/motus-clean_table.mp4) |
-| Put Block | [Video](media/fastwam-put_block.mp4) | [Video](media/lingbotva-put_block.mp4) | [Video](media/motus-put_block.mp4) |
-| Put Cup | [Video](media/fastwam-put_cup.mp4) | [Video](media/lingbotva-put_cup.mp4) | [Video](media/motus-put_cup.mp4) |
-| Stack Blocks | [Video](media/fastwam-stack_blocks.mp4) | [Video](media/lingbotva-stack_blocks.mp4) | [Video](media/motus-stack_blocks.mp4) |
-| Stack Bowls | [Video](media/fastwam-stack_bowls.mp4) | [Video](media/lingbotva-stack_bowls.mp4) | [Video](media/motus-stack_bowls.mp4) |
+| Bowl Pouring | [Download](media/fastwam-bowl_pouring.mp4?raw=true) | [Download](media/lingbotva-bowl_pouring.mp4?raw=true) | [Download](media/motus-bowl_pouring.mp4?raw=true) |
+| Clean Table | [Download](media/fastwam-clean_table.mp4?raw=true) | [Download](media/lingbotva-clean_table.mp4?raw=true) | [Download](media/motus-clean_table.mp4?raw=true) |
+| Put Block | [Download](media/fastwam-put_block.mp4?raw=true) | [Download](media/lingbotva-put_block.mp4?raw=true) | [Download](media/motus-put_block.mp4?raw=true) |
+| Put Cup | [Download](media/fastwam-put_cup.mp4?raw=true) | [Download](media/lingbotva-put_cup.mp4?raw=true) | [Download](media/motus-put_cup.mp4?raw=true) |
+| Stack Blocks | [Download](media/fastwam-stack_blocks.mp4?raw=true) | [Download](media/lingbotva-stack_blocks.mp4?raw=true) | [Download](media/motus-stack_blocks.mp4?raw=true) |
+| Stack Bowls | [Download](media/fastwam-stack_bowls.mp4?raw=true) | [Download](media/lingbotva-stack_bowls.mp4?raw=true) | [Download](media/motus-stack_bowls.mp4?raw=true) |
 
 ## Release status
 
