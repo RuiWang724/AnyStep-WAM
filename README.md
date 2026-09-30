@@ -20,7 +20,7 @@ We evaluate AnyStep on **Motus, FastWAM, and LingBotVA**, across **50 RoboTwin 2
 
 ## Real-world demonstrations
 
-Experiments use a **Unitree G1D dual-arm robot**. All videos are shown at their original **1× speed**. Play the comparison below, or download individual task recordings using the links in the table.
+Experiments use a **Unitree G1D dual-arm robot**. All videos are shown at their original **1× speed**.
 
 ### Base-Motus vs. AnyStep-Motus
 
@@ -30,16 +30,7 @@ https://github.com/user-attachments/assets/5b2e18a4-378e-48b0-be6d-b30de362c728
 
 ### Six tasks across three backbones
 
-The following recordings use AnyStep adaptive inference.
-
-| Task | AnyStep-FastWAM | AnyStep-LingBotVA | AnyStep-Motus |
-| --- | --- | --- | --- |
-| Bowl Pouring | [Download](media/fastwam-bowl_pouring.mp4?raw=true) | [Download](media/lingbotva-bowl_pouring.mp4?raw=true) | [Download](media/motus-bowl_pouring.mp4?raw=true) |
-| Clean Table | [Download](media/fastwam-clean_table.mp4?raw=true) | [Download](media/lingbotva-clean_table.mp4?raw=true) | [Download](media/motus-clean_table.mp4?raw=true) |
-| Put Block | [Download](media/fastwam-put_block.mp4?raw=true) | [Download](media/lingbotva-put_block.mp4?raw=true) | [Download](media/motus-put_block.mp4?raw=true) |
-| Put Cup | [Download](media/fastwam-put_cup.mp4?raw=true) | [Download](media/lingbotva-put_cup.mp4?raw=true) | [Download](media/motus-put_cup.mp4?raw=true) |
-| Stack Blocks | [Download](media/fastwam-stack_blocks.mp4?raw=true) | [Download](media/lingbotva-stack_blocks.mp4?raw=true) | [Download](media/motus-stack_blocks.mp4?raw=true) |
-| Stack Bowls | [Download](media/fastwam-stack_bowls.mp4?raw=true) | [Download](media/lingbotva-stack_bowls.mp4?raw=true) | [Download](media/motus-stack_bowls.mp4?raw=true) |
+Videos of all six tasks using AnyStep-FastWAM, AnyStep-LingBotVA, and AnyStep-Motus are available in the [`media/`](media/) directory.
 
 ## Release status
 
