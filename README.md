@@ -20,13 +20,13 @@ We evaluate AnyStep on **Motus, FastWAM, and LingBotVA**, across **50 RoboTwin 2
 
 ## Real-world demonstrations
 
-Experiments use a **Unitree G1D dual-arm robot**. All videos are shown at their original **1× speed**.
+Experiments use a **Unitree G1D dual-arm robot**. The comparison below is shown at **2× speed**; the six-task recordings for each backbone retain their original **1× speed**.
 
 ### Base-Motus vs. AnyStep-Motus
 
-https://github.com/user-attachments/assets/5b2e18a4-378e-48b0-be6d-b30de362c728
+https://github.com/user-attachments/assets/24ea4e76-8fbd-4f65-8789-db41b065dba2
 
-[Download the side-by-side comparison](media/base-motus-anystep-motus-comparison.mp4?raw=true) · Put Block · 1× speed
+[Download the side-by-side comparison](media/base-motus-anystep-motus-comparison-2x.mp4?raw=true) · Put Block · 2× speed
 
 ### Six tasks across three backbones
 
